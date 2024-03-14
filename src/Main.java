@@ -23,7 +23,7 @@ public class ReplaceWords {
             while ((line = reader.readLine()) != null) {
                 String replacedLine = line.replaceAll("Nha Trang", "Vũng Tàu");
                 writer.write(replacedLine);
-                writer.newLine(); // Thêm dòng mới sau mỗi dòng đã ghi
+                writer.newLine(); 
             }
 
             reader.close();
