@@ -6,22 +6,26 @@ import java.io.IOException;
 
 public class ReplaceWords {
     public static void main(String[] args) {
+        // Đường dẫn của file input và output
         String inputFilePath = "input.txt";
         String outputFilePath = "output.txt";
 
         try {
+            // Mở file input để đọc
             BufferedReader reader = new BufferedReader(new FileReader(inputFilePath));
-            StringBuilder content = new StringBuilder();
+            // Mở file output để ghi
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
+
             String line;
             while ((line = reader.readLine()) != null) {
-                content.append(line).append("\n");
+                // Thay thế từ "Nha Trang" bằng từ "Vũng Tàu" và ghi vào file output
+                String replacedLine = line.replaceAll("Nha Trang", "Vũng Tàu");
+                writer.write(replacedLine);
+                writer.newLine(); // Thêm dòng mới sau mỗi dòng đã ghi
             }
+
+            // Đóng file input và output sau khi hoàn thành
             reader.close();
-
-            String replacedContent = content.toString().replaceAll("Nha Trang", "Vũng Tàu");
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
-            writer.write(replacedContent);
             writer.close();
 
             System.out.println("Đã thay thế và ghi ra file output.txt thành công.");
@@ -31,4 +35,3 @@ public class ReplaceWords {
         }
     }
 }
-
