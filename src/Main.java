@@ -3,28 +3,29 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
 
 public class ReplaceWords {
     public static void main(String[] args) {
-        // Đường dẫn của file input và output
         String inputFilePath = "input.txt";
         String outputFilePath = "output.txt";
 
         try {
-            // Mở file input để đọc
+            File outputFile = new File(outputFilePath);
+            if (!outputFile.exists()) {
+                outputFile.createNewFile();
+            }
+
             BufferedReader reader = new BufferedReader(new FileReader(inputFilePath));
-            // Mở file output để ghi
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
 
             String line;
             while ((line = reader.readLine()) != null) {
-                // Thay thế từ "Nha Trang" bằng từ "Vũng Tàu" và ghi vào file output
                 String replacedLine = line.replaceAll("Nha Trang", "Vũng Tàu");
                 writer.write(replacedLine);
                 writer.newLine(); // Thêm dòng mới sau mỗi dòng đã ghi
             }
 
-            // Đóng file input và output sau khi hoàn thành
             reader.close();
             writer.close();
 
